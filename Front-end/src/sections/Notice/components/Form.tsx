@@ -82,7 +82,12 @@ export const Form = () => {
         if (image)
             return (
                 <>
-                    <X onClick={() => setImage(null)} />
+                    <X onClick={e => {
+                        setImage(null)
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }
+                    } />
                     <img src={URL.createObjectURL(image)} alt={image.name} className="max-h-16" />
                 </>
             )
