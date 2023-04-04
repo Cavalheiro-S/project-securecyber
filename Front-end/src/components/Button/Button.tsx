@@ -11,7 +11,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ children, cl
         <button
             {...props}
             ref={ref}
-            className={twMerge("bg-primary text-white font-semibold py-2 px-4 rounded hover:text-primary hover:bg-white transition", className)}>
+            className={twMerge("flex items-center justify-center bg-primary text-white font-semibold py-2 px-4 rounded hover:bg-opacity-70 transition", className, props.disabled && "bg-opacity-70")}>
             {children}
         </button >
     )

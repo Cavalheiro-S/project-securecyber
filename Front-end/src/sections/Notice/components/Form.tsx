@@ -1,4 +1,4 @@
-import { Paperclip, X, XCircle } from "@phosphor-icons/react"
+import { CircleNotch, Paperclip, X, XCircle } from "@phosphor-icons/react"
 import * as Dialog from "@radix-ui/react-dialog"
 import { useContext, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
@@ -10,17 +10,14 @@ import { Loading } from "../../../components/Loading/Loading"
 import { Text } from "../../../components/Text/Text"
 import { client } from "../../../utils/client"
 import { NoticeContext } from "../../../contexts/NoticeContext"
+import { ValidationError } from "../../../exceptions/ValidationException"
 
 interface FormProps {
     title: string
     description: string
 }
 
-class ValidationError extends Error {
-    constructor(message: string) {
-        super(message);
-    }
-}
+
 
 export const Form = () => {
 
@@ -47,7 +44,6 @@ export const Form = () => {
                 setError("root", { message: "Erro ao enviar a imagem" });
                 console.log(e);
             }
-
         }
         finally {
             setloading(false);
@@ -82,13 +78,15 @@ export const Form = () => {
         if (image)
             return (
                 <>
-                    <X onClick={e => {
-                        setImage(null)
-                        e.stopPropagation();
-                        e.preventDefault();
-                    }
-                    } />
                     <img src={URL.createObjectURL(image)} alt={image.name} className="max-h-16" />
+                    <X
+                        className="hover:cursor-pointer transition-colors duration-200 text-primary hover:text-red-500 h-6 w-6"
+                        onClick={e => {
+                            setImage(null)
+                            e.stopPropagation();
+                            e.preventDefault();
+                        }
+                        } />
                 </>
             )
 
@@ -116,24 +114,26 @@ export const Form = () => {
         <Dialog.Root open={modalOpen} onOpenChange={setmodalOpen}>
             <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-50" />
             <Dialog.Trigger asChild>
-                <Button className='hover:bg-white hover:text-primary'>
+                <Button >
                     Adicionar
                 </Button>
             </Dialog.Trigger>
             <Dialog.Content className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded p-6 bg-background">
 
-                {loading ? <Loading /> : <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 w-96">
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 w-96">
                     <div className="flex justify-between w-full items-end gap-6">
                         <Heading>Adicionar Notícia</Heading>
                         <Dialog.Close asChild>
-                            <XCircle className="text-gray-400 h-6 w-6" />
+                            <X className="text-gray-400 h-6 w-6 hover:text-red-500" />
                         </Dialog.Close>
                     </div>
                     <label>
                         Capa da notícia
                         <Input.Root
                             className={twMerge("relative transition", imageDrag ? " ring-inset ring-4 ring-primary" : "")}>
-                            <div className="flex flex-col items-center justify-between gap-2 text-neutral-500 h-full px-3">
+                            <div
+                                className={
+                                    twMerge("flex items-center gap-2 text-neutral-500 h-full px-3", image ? "flex-row justify-center" : "flex-col justify-between")}>
                                 {renderImageFileContent()}
 
                             </div>
@@ -155,8 +155,10 @@ export const Form = () => {
                         {errors.description && <Text className="text-red-500">Máximo de 200 caracteres</Text>}
                     </label>
 
-                    <Button type="submit">Adicionar</Button>
-                </form>}
+                    <Button type="submit" disabled={loading}>
+                        {loading ? <CircleNotch className="animate-spin text-white w-6 h-6" /> : "Adicionar"}
+                    </Button>
+                </form>
             </Dialog.Content>
         </Dialog.Root >
     )

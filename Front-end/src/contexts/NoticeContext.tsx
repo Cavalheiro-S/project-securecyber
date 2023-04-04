@@ -1,6 +1,6 @@
 import { SanityDocumentStub } from "@sanity/client";
 import React, { ReactNode, createContext, useEffect, useState } from "react";
-import { client } from "../utils/client";
+import { client, urlFor } from "../utils/client";
 import { QueryNotice, queryNotice } from "../utils/data";
 
 interface NoticeContextType {
@@ -28,7 +28,6 @@ export const NoticeProvider = ({ children }: NoticeProviderProps) => {
         const subscribe = client
             .listen<QueryNotice>(queryNotice())
             .subscribe((data) => {
-                console.log(data);
                 if (data.result) {
                     const newNotice: QueryNotice = {
                         _id: data.result._id,
@@ -37,7 +36,7 @@ export const NoticeProvider = ({ children }: NoticeProviderProps) => {
                         image: {
                             asset: {
                                 _id: data.result.image.asset._id,
-                                url: data.result.image.asset.url
+                                url: urlFor(data.result.image).url()
 
                             }
                         }
@@ -95,7 +94,6 @@ export const NoticeProvider = ({ children }: NoticeProviderProps) => {
         setLoading(true);
         const query = queryNotice();
         const noticesData = await client.fetch<QueryNotice[]>(query)
-        console.log(noticesData);
         setNotices(noticesData);
         setLoading(false);
     }

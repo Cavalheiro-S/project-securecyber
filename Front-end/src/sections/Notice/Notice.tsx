@@ -11,7 +11,7 @@ import { Form } from './components/Form'
 
 export const Notice = () => {
 
-    const { removeNotice, notices, loading, loadNotice } = useContext(NoticeContext);
+    const { removeNotice, notices, loading, loadNotice, setLoading } = useContext(NoticeContext);
 
     useEffect(() => {
         loadNotice();
@@ -42,7 +42,7 @@ export const Notice = () => {
         <>
             <Header />
             <section className='px-40 h-[90vh]'>
-                {loading ? <Loading /> : (
+                {loading ? <Loading className='h-full'/> : (
                     <div className='max-w-3xl mx-auto'>
                         <div className='flex justify-between items-start '>
                             <div className='flex flex-col gap-2'>
