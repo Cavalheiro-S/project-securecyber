@@ -7,6 +7,7 @@ import { Text } from '../../components/Text/Text'
 import { NoticeContext } from '../../contexts/NoticeContext'
 import { QueryNotice } from '../../utils/data'
 import { Form } from './components/Form'
+import { truncateTextWithDots } from '../../utils/Text'
 
 
 export const Notice = () => {
@@ -20,14 +21,14 @@ export const Notice = () => {
     const renderNotice = (notice: QueryNotice, index: number) => {
 
         return (
-            <div key={notice._id + index} className='flex items-center justify-between gap-6'>
-                <div className='flex gap-2 h-24'>
-                    <div className='w-[160px]'>
+            <div key={notice._id + index} className='flex md:flex-row flex-col items-center justify-between gap-6'>
+                <div className='flex flex-col md:flex-row  flex-1 gap-2 md:h-24'>
+                    <div className='md:w-[160px]'>
                         <img src={notice.image.asset.url} className='h-full w-full aspect-square rounded' />
                     </div>
-                    <div className='flex flex-col gap-2'>
+                    <div className='flex flex-1 flex-col gap-2'>
                         <Text className='font-bold'>{notice.title}</Text>
-                        <Text>{notice.description}</Text>
+                        <Text>{truncateTextWithDots(notice.description, 100)}</Text>
                     </div>
                 </div>
                 <div onClick={() => removeNotice(notice)}
@@ -41,19 +42,19 @@ export const Notice = () => {
     return (
         <>
             <Header />
-            <section className='px-40 h-[90vh]'>
-                {loading ? <Loading className='h-full'/> : (
-                    <div className='max-w-3xl mx-auto'>
-                        <div className='flex justify-between items-start '>
+            <section className='flex md:block md:items-center px-4 md:px-40 min-h-screen md:h-[90vh]'>
+                {loading ? <Loading className='w-full h-full' /> : (
+                    <div className='max-w-3xl w-full mx-auto'>
+                        <div className='flex flex-col md:flex-row justify-between items-start gap-2 w-full'>
                             <div className='flex flex-col gap-2'>
                                 <Heading className='text-3xl'>
                                     Noticias Adicionadas
                                 </Heading>
-                                <Text className='text-lg'>{notices.length ?? 0}/10 adicionadas</Text>
+                                <Text className='text-lg text-start '>{notices.length ?? 0}/10 adicionadas</Text>
                             </div>
                             <Form />
                         </div>
-                        <div className='flex flex-col gap-6 py-4'>
+                        <div className='flex flex-col gap-6 py-8'>
                             {notices.length > 0 && notices.map(renderNotice)}
                         </div>
                     </div>

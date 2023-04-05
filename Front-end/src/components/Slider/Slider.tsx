@@ -16,6 +16,7 @@ export const Slider = () => {
     const { notices } = useContext(NoticeContext);
 
     const renderNotice = (notice: QueryNotice) => {
+
         return (
             <SplideSlide key={notice._id}>
                 <div className='h-20 custom-wrapper gap-2'>
@@ -23,7 +24,7 @@ export const Slider = () => {
                         <img src={notice.image.asset.url} className="h-full rounded" alt="" />
                         <div className='flex flex-col h-full ml-2 justify-center overflow-hidden'>
                             <Heading className='text-lg'>{notice.title}</Heading>
-                            <Text>{truncateTextWithDots(notice.description, width > 768 ? 100 : 20)}</Text>
+                            <Text>{truncateTextWithDots(notice.description, sizeToTruncate())}</Text>
                         </div>
                     </SplideTrack>
                 </div>
@@ -31,6 +32,26 @@ export const Slider = () => {
         )
 
     }
+
+    const numberOfSlides = () => {
+        if (width > 1440)
+            return 3;
+        if (width > 768)
+            return 2;
+        else
+            return 1;
+    }
+
+
+    const sizeToTruncate = () => {
+        if (width > 1440)
+            return 50;
+        if (width > 1024)
+            return 30;
+        else
+            return 20;
+    }
+
     return (
         <Splide
             className="bg-background py-4"
@@ -39,7 +60,7 @@ export const Slider = () => {
                 gap: "10px",
                 arrows: false,
                 pagination: false,
-                perPage: width > 768 ? 3 : 1,
+                perPage: numberOfSlides(),
                 autoScroll: {
                     pauseOnHover: true,
                     pauseOnFocus: false,

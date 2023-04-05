@@ -95,7 +95,7 @@ export const Form = () => {
                 <Paperclip className="w-6 h-6" />
                 <Text className="text-center">
                     <span className="text-primary">Clique</span> ou arraste para enviar uma imagem do <br />
-                    seu computador
+                    seu dispositivo
                 </Text>
                 <Input.Input
                     type="file"
@@ -114,14 +114,14 @@ export const Form = () => {
         <Dialog.Root open={modalOpen} onOpenChange={setmodalOpen}>
             <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-50" />
             <Dialog.Trigger asChild>
-                <Button >
+                <Button className="w-full md:w-fit">
                     Adicionar
                 </Button>
             </Dialog.Trigger>
-            <Dialog.Content className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded p-6 bg-background">
+            <Dialog.Content className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded p-6 bg-background w-full md:w-fit">
 
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 w-96">
-                    <div className="flex justify-between w-full items-end gap-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 md:w-96 w-full">
+                    <div className="flex md:flex-row flex-col-reverse justify-between w-full items-center md:items-end gap-6">
                         <Heading>Adicionar Notícia</Heading>
                         <Dialog.Close asChild>
                             <X className="text-gray-400 h-6 w-6 hover:text-red-500" />
@@ -143,7 +143,7 @@ export const Form = () => {
                     <label>
                         Titulo
                         <Input.Root>
-                            <Input.Input {...register("title", { required: true })} />
+                            <Input.Input maxLength={30} {...register("title", { required: true })} />
                         </Input.Root>
                         {errors.title && <Text className="text-red-500">Campo obrigatório</Text>}
                     </label>
