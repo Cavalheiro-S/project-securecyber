@@ -111,12 +111,12 @@ Antes do desenvolvimento o design foi construído utilizando o figma
 
 ### Clonando o repositório
 ```bash
-git clone https://github.com/Cavalheiro-S/staart-projeto
+git clone https://github.com/Cavalheiro-S/project-securecyber
 ```
 
 ### Entrando na pasta do repositório
 ```bash
-cd staart-projeto
+cd project-securecyber
 ```
 
 ### Instalando pacotes
