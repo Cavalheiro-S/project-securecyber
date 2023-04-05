@@ -4,8 +4,8 @@
 O Projeto é uma landing page para um empresa de cybersegurança fícticia , na página é possível visualizar um carrosel de notícias na parte superior, as notícias que vão ser exibidas podem ser adicionadas por meio do login na aba notícias, a pagína também contém a seção principal , seguido pelas seções de "sobre nós", "nossos serviços", "nossos planos" e "entre em contato" 
 
 ## 🎥 Video de Apresentação do Projeto
-https://user-images.githubusercontent.com/67433096/216858965-b8cdc3b3-2fea-4e2c-b9e0-f56358e2edbf.mp4
 
+https://user-images.githubusercontent.com/67433096/230078713-a7b543ed-0551-4fa3-8a89-ea1541ca6859.mp4
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -83,7 +83,7 @@ https://user-images.githubusercontent.com/67433096/216858965-b8cdc3b3-2fea-4e2c-
     </td>
     <td align="center">
     <a href="https://sanity.io/">
-        <img src="https://skillicons.dev/icons?i=sanity" width="65px" alt="Sanity icon"/><br>
+        <img src="https://user-images.githubusercontent.com/67433096/230073403-15238071-52c4-46db-a440-33a17448af81.png" width="65px" alt="Sanity icon"/><br>
         <sub>
           <b>
             <pre>Sanity</pre>
