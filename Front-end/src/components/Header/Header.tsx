@@ -19,7 +19,7 @@ export const Header = () => {
         return (
             <motion.header layout className={
                 twMerge("flex top-0 flex-col lg:grid grid-rows-1 grid-cols-3 py-8  px-40 justify-between items-center font-semibold bg-transparent z-50",
-                    scrollY > 100 && "bg-background w-screen border-b border-white",
+                    scrollY > 100 && "bg-background w-screen border-b fixed border-white",
                     width < 1024 && "flex-row gap-4 px-4 justify-between w-screen relative",
                     scrollY > 100 && width < 1024 && "fixed"                    
 
