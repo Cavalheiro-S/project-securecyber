@@ -7,6 +7,15 @@ O Projeto é uma landing page para um empresa de cybersegurança fícticia , na 
 
 https://user-images.githubusercontent.com/67433096/230078713-a7b543ed-0551-4fa3-8a89-ea1541ca6859.mp4
 
+## :hammer: Principais Ferramentas
+
+### Firebase
+O firebase é uma ferramenta da google que disponibiliza um backend de fácil utilização para sua aplicação, nesse projeto ela foi utilizada para a autenticação do usuário na aplicação ao acessar a tela de "Notícias"
+
+### Sanity
+O sanity é uma plataforma que facilita o gerencimento de conteúdo , atráves do sanity studio é possível criar e editar conteúdos sem a necessidade de criar uma interface para o usuário , pois a mesma já conta com isso. Também é possível fazer a integração desse conteúdo com sua aplicação , já que o sanity disponibiliza uma api para gerenciamento dos dados. Nesse projeto ele foi utilizado para fazer o gerenciamento das notícias inseridas na aplicação, para isso foi utilizada a api do sanity que atráves de um formulário é possível adicionar: imagem, título e descrição da notícia.
+
+
 ## 🚀 Tecnologias Utilizadas
 
 <table>
